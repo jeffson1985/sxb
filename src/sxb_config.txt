@@ -1,0 +1,21 @@
+db.jdbcUrl = jdbc:mysql://127.0.0.1/sxb_demo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+mariadb.jdbcUrl=jdbc:mariadb://127.0.0.1:3306/sxb_demo?useUnicode=true&characterEncoding=UTF8
+mariadb.class = org.mariadb.jdbc.Driver
+db.user = admin
+db.password = admin99
+system.devMode = true
+system.autoBindRoutes = true
+system.autoBindModels = true
+
+#email smtp.hope123.co.jp
+smtp.host=smtp.hope123.co.jp
+#smtp.port=465
+#smtp.timeout=900000
+#smtp.sslport=587
+smtp.ssl=false
+smtp.tls=false
+smtp.debug=true
+smtp.user=son@hope123.co.jp
+smtp.password=TsJuttOC
+smtp.name=孫日昌
+smtp.from=son@hope123.co.jp

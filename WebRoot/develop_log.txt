@@ -1,0 +1,36 @@
+－－－－－－－－－－－－－－－－－－－－2015年7月9日－－－－－－－－－－－－－－－－－－－
+
+org.sxb.common 包为后期开发扩展用（PDF，EXCEL，MAIL，ORM等）
+
+org.sxb.plugin.orm   作为后期开发的ORM模块，不打算作为插件使用，应该作为框架的常驻模块
+
+
+－－－－－－－－－－－－－－－－－－－－ 2015 年 7 月 16 日－－－－－－－－－－－－－－－－－－－
+
+添加路由自动加载功能   --> org.sxb.route.AutoBindRoutes
+				--> org.sxb.kit.ClassSearcher
+
+添加CSV生成功能   ---> org.sxb.render.CsvRender
+				--> org.sxb.kit.csv
+	
+百万数据生成			
+DELIMITER  //
+create procedure myproc()
+begin
+    declare num int;
+    set num=1;
+    while num < 1000000 do
+
+        INSERT INTO `sxb_demo`.`student` (`number`,`name`,`age`,`class_name`,`teacher`) VALUES (SUBSTRING(MD5(RAND()), 1, 7),'中国留学生',CEIL(RAND() * 30),'1S','岩田');
+
+         set num=num+1;
+
+    end while;
+end
+//
+call myproc();
+
+－－－－－－－－－－－－－－－－－－－－ 2015 年 7 月 17 日－－－－－－－－－－－－－－－－－－－
+添加邮件发送插件  org.sxb.plugin.mail
+Webservice JSON API功能添加
+

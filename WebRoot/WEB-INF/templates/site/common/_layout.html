@@ -1,0 +1,72 @@
+<#macro layout  title pageName description keywords>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>${title!} | ${pageName!} :: ホープ株式会社デモ用</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="${description!} - 楽旅ホープ">
+<meta name="keywords" content="${keywords!}" />
+<link rel="stylesheet" href="${base!}/resources/site/css/style.css"
+	type="text/css" media="all" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="${base!}/resources/site/css/slider.css" rel="stylesheet"
+	type="text/css" media="all" />
+</head>
+<body>
+	<div class="header">
+		<div class="wrap">
+			<div class="logo">
+				<a href="index.html"><img
+					src="${base!}/resources/site/images/logo.png" alt="楽旅" /></a>
+			</div>
+			<div class="con-right">
+				<div class="grid1-l-img">
+					<img src="${base!}/resources/site/images/contact.png" alt="お待ちしております">
+				</div>
+				<div class="grid1-l-desc">
+					<p>電話 : ${(site.telphone)!}</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<#-- Topナビバー開始 -->
+	<div class="header-bottom">
+		<div class="wrap">
+			<ul id="nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a class="hsubs" href="about.html">楽旅について</a></li>
+				<li><a class="hsubs" href="destinations.html">旅先、目的地</a>
+					<ul class="subs">
+						<li><a href="#">ホテル</a></li>
+						<li><a href="#">レストラン</a></li>
+						<li><a href="#">海水浴場、ビーチ</a></li>
+					</ul></li>
+				<li><a class="hsubs" href="destinations.html">楽旅ガイド</a></li>
+				<li><a href="contact.html">コンタクト</a></li>
+			</ul>
+		</div>
+	</div>
+	<#-- Topナビバー終了 -->
+	
+	<#-- 各ページ内容開始 -->
+	<#nested>
+	<#-- 各ページ内容終了 -->
+	
+	<#-- フーター開始 -->
+	<div class="footer-bottom">
+		<div class="wrap">
+			<div class="copy">
+				<p>
+					ホープ株式会社 &copy; 2015 All rights Reserved | Design by <a
+						href="http://hope123.co.jp">ホープ（株）</a> &nbsp;&nbsp;&nbsp;
+				</p>
+			</div>
+		</div>
+	</div>
+	<#-- フーター終了 -->
+</body>
+</html>
+</#macro>

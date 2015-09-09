@@ -1,0 +1,135 @@
+<#import "../common/layout.html" as layout> <@layout.header>
+<title>${title!}レイアウトを使用</title>
+
+<meta name="keywords" content="${keyword!}" />
+<meta name="description" content="${description!}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/resources/manage/css/chosen.css" />
+</@layout.header> <@layout.body>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i> <a href="#">Home</a></li>
+
+			<li><a href="#">システム管理</a></li>
+			<li class="active">会員マスター</li>
+		</ul>
+		<!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon"> <input type="text"
+					placeholder="Search ..." class="nav-search-input"
+					id="nav-search-input" autocomplete="off" /> <i
+					class="icon-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div>
+		<!-- #nav-search -->
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>
+				会員一覧 <small> <i class="icon-double-angle-right"></i>
+					会員リスト
+				</small>
+			</h1>
+		</div>
+		<!-- /.page-header -->
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="update" method="post" encType="multipart/form-data">
+								<input type="hidden" name="admin.id" value="${admin.id!}">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> ログインID </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5"  name="admin.username" value="${(admin.username)!}"/>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 暗証番号: </label>
+
+										<div class="col-sm-9">
+											<input type="password" id="form-field-2" placeholder="Password" class="col-xs-10 col-sm-5" name="admin.password" value="${(admin.password)!}"/>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> 名前： </label>
+
+										<div class="col-sm-9">
+											<input  type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" name="admin.name" value="${(admin.name)!}" />
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> メール： </label>
+
+										<div class="col-sm-9">
+											<input  type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" name="admin.email" value="${(admin.email)!}" />
+										</div>
+									</div>
+									
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> 写真： </label>
+
+										<div class="col-sm-9">
+											<input id="fileId2" type="file" multiple="multiple" name="file[]" />
+										</div>
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												Submit
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												Reset
+											</button>
+										</div>
+									</div>
+								</form>
+					</div>
+					<!-- PAGE CONTENT ENDS -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.page-content -->
+	</div>
+	<!-- /.main-content -->
+
+	</@layout.body> <@layout.footer>
+	<script src="/resources/manage/js/chosen.jquery.min.js"></script>
+	<script type="text/javascript">
+	jQuery(function($) {
+		$(".chosen-select").chosen(); 
+	});
+	</script>
+	</@layout.footer>

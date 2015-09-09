@@ -1,0 +1,201 @@
+<#import "../common/layout.html" as layout> <@layout.header>
+<title>${title!}レイアウトを使用</title>
+
+<meta name="keywords" content="${keyword!}" />
+<meta name="description" content="${description!}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</@layout.header> <@layout.body>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i> <a href="#">Home</a></li>
+
+			<li><a href="#">システム管理</a></li>
+			<li class="active">会員マスター</li>
+		</ul>
+		<!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon"> <input type="text"
+					placeholder="Search ..." class="nav-search-input"
+					id="nav-search-input" autocomplete="off" /> <i
+					class="icon-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div>
+		<!-- #nav-search -->
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>
+				会員一覧 <small> <i class="icon-double-angle-right"></i>
+					会員リスト
+				</small>
+			</h1>
+		</div>
+		<!-- /.page-header -->
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<div class="col btn-group pull-right">
+					<a href="${base!}/manage/admin/add"><button type="button" class="btn btn-success">新規追加</button></a>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table id="sample-table-1"
+								class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center"><label> <input type="checkbox"
+												class="ace" /> <span class="lbl"></span>
+										</label></th>
+										<th>名前</th>
+										<th>ログインID</th>
+										<th class="hidden-480">メール</th>
+
+										<th><i class="icon-time bigger-110 hidden-480"></i>
+										登録日付</th>
+										<th class="hidden-480">Status</th>
+
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
+								<#list page.getList() as admin>
+									<tr>
+										<input type="hidden" name="id" value="${admin.id!}" />
+										<td class="center"><label> <input type="checkbox"
+												class="ace" /> <span class="lbl"></span>
+										</label></td>
+
+										<td><a href="#">${admin.name}</a></td>
+										<td>${admin.username}</td>
+										<td class="hidden-480">${admin.email}</td>
+										<td>${(admin.create_date)!""}</td>
+
+										<td class="hidden-480">
+										<#if (admin.active)??>
+											<span class="label label-sm label-success">Active</span>
+										<#else>
+											<span class="label label-sm label-warning">Forbid</span>
+										</#if>
+										</td>
+
+										<td>
+											<div
+												class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<button class="btn btn-xs btn-success">
+													<a href="/manage/admin/view?id=${admin.id!}"><i class="icon-zoom-in bigger-120"></i></a>
+												</button>
+
+												<button class="btn btn-xs btn-info">
+													<a href="/manage/admin/edit?id=${admin.id!}"><i class="icon-edit bigger-120"></i></a>
+												</button>
+
+												<button class="btn btn-xs btn-danger">
+													<a href="javascript:" class="delete" ><i class="icon-trash bigger-120"></i></a>
+												</button>
+											</div>
+
+											<div class="visible-xs visible-sm hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-primary dropdown-toggle"
+														data-toggle="dropdown">
+														<i class="icon-cog icon-only bigger-110"></i>
+													</button>
+
+													<ul
+														class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+														<li><a href="#" class="tooltip-info"
+															data-rel="tooltip" title="View"> <span class="blue">
+																	<i class="icon-zoom-in bigger-120"></i>
+															</span>
+														</a></li>
+
+														<li><a href="#" class="tooltip-success"
+															data-rel="tooltip" title="Edit"> <span class="green">
+																	<i class="icon-edit bigger-120"></i>
+															</span>
+														</a></li>
+
+														<li><a href="#" class="tooltip-error"
+															data-rel="tooltip" title="Delete"> <span class="red">
+																	<i class="icon-trash bigger-120"></i>
+															</span>
+														</a></li>
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+									</#list>
+								</tbody>
+							</table>
+							<#include "../common/_paginate.html" />
+    						<@paginate currentPage=page.pageNumber totalPage=page.totalPage actionUrl="/manage/admin/" urlParas="" />
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- PAGE CONTENT ENDS -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.page-content -->
+	</div>
+	<!-- /.main-content -->
+
+	</@layout.body> <@layout.footer>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var $delete = $("a.delete");
+		
+		$delete.click(function() {
+			
+			if(confirm("削除しましか？")){				
+				var $this = $(this);
+				var $tr = $this.closest("tr");
+				var id = $tr.find("input[name='id']").val(); 
+				
+				$.ajax({
+					url: "/manage/admin/delete",
+					type:"POST",
+					dataType:"json",
+					data:{id:id},
+					cache: false,
+					beforeSend: function(){
+						
+					},
+					success:function(data){
+						if(data.status == "ok"){
+							$tr.remove();
+							setTimeout(function() {
+								location.reload(true);
+							}, 3000);
+						}else{
+							comfirm("error");
+						}
+					},
+					complete: function(){
+						
+					}
+				});
+			}		
+		});
+		
+	});
+		
+	</script>
+	</@layout.footer>

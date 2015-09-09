@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/templates/manage/admin/add.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/manage/admin/edit.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/manage/admin/index.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/manage/admin/view.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/manage/article_category/index.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/manage/common/_paginate.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/about.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/common=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/contact.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/destinations.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/index.html=UTF-8
+encoding//WebRoot/WEB-INF/templates/site/upload.html=UTF-8
